@@ -1,0 +1,18 @@
+default vesamenu.c32
+prompt 1
+timeout 600
+
+label local
+menu label Boot from ^local drive
+menu default
+localboot 0xffff
+
+label linux
+menu label ^Install Fedora 36 64-bit
+kernel f36/vmlinuz
+append initrd=f36/initrd.img inst.stage2=https://download.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/ ip=dhcp
+
+label server
+menu label ^Install Fedora 36 ( Minimal Image )
+kernel f36/vmlinuz
+append initrd=f36/initrd.img inst.stage2=https://download.fedoraproject.org/pub/fedora/linux/releases/36/Server/x86_64/os/ ip=dhcp ks=https://example.com/fedora/kickstarts/minimal.ks

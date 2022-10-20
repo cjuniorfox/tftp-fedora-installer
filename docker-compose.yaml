@@ -1,0 +1,20 @@
+version: "3"
+services:
+  dhcp:
+    image: networkboot/dhcpd
+    network_mode: "host"
+    volumes:
+      - ./dhcp:/data
+    command: "br0"
+  tftp:
+    build:
+      context: ./tftp/
+      dockerfile: Dockerfile
+    image: fedora36-tftp-boot:latest
+    networks:
+      westeros:
+        ipv4_address: 10.1.1.4
+networks:
+  westeros:
+    name: br0-westeros
+    external: true
